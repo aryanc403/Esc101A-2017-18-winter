@@ -1,0 +1,72 @@
+/**
+ * Copyright (c) 2014 Rajdeep Das.
+ * All rights reserved.
+ * 
+ * Usage of this program and the accompanying materials in any form 
+ * without prior permission from the owner is strictly prohibited. 
+ * 
+ * Author(s): Rajdeep Das <rajdeepd@iitk.ac.in>
+ */
+
+define(['bootstrap', 'jstree', 'mathjax'], function() {
+	
+	load_css('/styles/theme');
+	load_css('jstree');
+	
+	$(document).ready(function() {
+		stylize();
+		showTree();
+		MathJax.Hub.Config({
+			tex2jax: { inlineMath: [['$','$'],['\\(','\\)']] }
+		});
+	});
+});
+
+function stylize() {
+	$('body').css({
+		'background-color': '#F8F8F8',
+		'color': '#777777'
+	});
+	$('.container').css({
+		'min-height': window.innerHeight - 50
+	});
+}
+
+function showTree() {
+	var nodes = [];
+	for(var category in problems) {
+		var children = [];
+		for(var i = 0; i < problems[category].length; i++) {
+			children.push({
+				icon: 'glyphicon glyphicon-question-sign',
+				text: problems[category][i].title,
+				data: problems[category][i]
+			});
+		}
+		nodes.push({
+			icon: 'glyphicon glyphicon-folder-open',
+			text: category,
+			children: children
+		});
+	}
+	$('.tree').jstree({
+		core: {
+			data: nodes,
+			themes: {
+				stripes: true
+			}
+		},
+		plugins: ['wholerow']//, 'sort']
+	}).on('select_node.jstree', function(e, sel) {
+		var data = sel.node.data;
+		if(data === null) return;
+		$.getJSON('/problems/statement', {id: data.id}, function(problem) {
+			$('.title').html(problem.title);
+			$('.category').html(problem.category);
+			$('.statement').html(problem.statement);
+			$('.link').attr('href', '/editor/practice/' + problem.id);
+			$('.problem').show();
+			MathJax.Hub.Queue(["Typeset",MathJax.Hub,"problem"]);
+		});
+	});
+}

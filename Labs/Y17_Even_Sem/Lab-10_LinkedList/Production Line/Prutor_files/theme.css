@@ -1,0 +1,24 @@
+/**
+ * Copyright (c) 2014 Rajdeep Das.
+ * All rights reserved.
+ * 
+ * Usage of this program and the accompanying materials in any form 
+ * without prior permission from the owner is strictly prohibited. 
+ * 
+ * Author(s): Rajdeep Das <rajdeepd@iitk.ac.in>
+ */
+
+@CHARSET "UTF-8";
+
+body {
+	background-color: #F8F8F8;
+	color: #777777;
+}
+
+.navbar,.navbar .container-fluid {
+	background-color: #EEEEEE;
+}
+
+.navbar {
+	border-bottom-color: #CCCCCC;
+}

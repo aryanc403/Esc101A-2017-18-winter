@@ -1,0 +1,211 @@
+/**
+ * Copyright (c) 2014 Rajdeep Das.
+ * All rights reserved.
+ * 
+ * Usage of this program and the accompanying materials in any form 
+ * without prior permission from the owner is strictly prohibited. 
+ * 
+ * Author(s): Rajdeep Das <rajdeepd@iitk.ac.in>
+ */
+
+var isMobile = false;
+if(/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|ipad|iris|kindle|Android|Silk|lge |maemo|midp|mmp|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows (ce|phone)|xda|xiino/i.test(navigator.userAgent) 
+    || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(navigator.userAgent.substr(0,4))) isMobile = true;
+
+requirejs.config({
+	baseUrl: '/vendor/',
+    paths: {
+        jquery: 'jquery/dist/jquery.min',
+        bootstrap : 'bootstrap/dist/js/bootstrap.min',
+        modernizr: 'modernizr/modernizr',
+        ace: 'ace-builds/src-min-noconflict/ace',
+        base64: 'js-base64/base64.min',
+        tree: 'bootstrap-treeview/dist/bootstrap-treeview.min',
+        mathjax: 'MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML',
+        jstorage: 'jstorage/jstorage.min',
+        vis: 'vis/dist/vis.min',
+        select: 'bootstrap-select/bootstrap-select.min',
+        datetime: 'eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min',
+        moment: 'moment/min/moment.min',
+        d3: 'd3/d3.min',
+        nvd3: 'nvd3/nv.d3.min',
+        tinycolor: 'tinycolor/tinycolor',
+        toastr: 'toastr/toastr.min',
+        scrollbar: 'perfect-scrollbar/min/perfect-scrollbar.min',
+        mousewheel: 'jquery-mousewheel/jquery.mousewheel.min',
+        alertify: 'alertify.js/lib/alertify.min',
+        icheck: 'jquery-icheck/icheck.min',
+        fullcalendar: 'fullcalendar/dist/fullcalendar.min',
+        gridster: 'gridster/dist/jquery.gridster.min',
+        jstree: 'jstree/dist/jstree.min',
+        hotkeys: 'jquery.hotkeys/jquery.hotkeys',
+        wysihtml: 'wysihtml5/dist/wysihtml5-0.3.0.min',
+        bootstrapwysihtml: 'bootstrap-wysihtml5/dist/bootstrap-wysihtml5-0.0.2.min',
+        keypress: 'Keypress/keypress-2.1.0.min',
+        socketio: 'socket.io/socket.io',
+        listjs: 'list.js/dist/list.min',
+        levenshtein: 'levenshtein/lib/levenshtein',
+        jsdiff: 'jsdiff/diff',
+        xssfilter: 'xss-filters/dist/xss-filters.min',
+        async: 'async/dist/async.min'
+    },
+    shim: {
+        'bootstrap': {
+            deps: ['jquery']
+        },
+        'tree': {
+        	deps: ['bootstrap']
+        },
+        'jstorage': {
+        	deps: ['jquery']
+        },
+        'select': {
+        	deps: ['bootstrap']
+        },
+        'datetime': {
+        	deps: ['bootstrap', 'moment']
+        },
+        'nvd3': {
+        	deps: ['d3']
+        },
+        'toastr': {
+        	deps: ['bootstrap']
+        },
+        'scrollbar': {
+        	deps: ['jquery', 'mousewheel']
+        },
+        'icheck': {
+        	deps: ['jquery']
+        },
+        'fullcalendar': {
+        	deps: ['jquery', 'moment']
+        },
+        'gridster': {
+        	deps: ['jquery']
+        },
+        'jstree': {
+        	deps: ['jquery']
+        },
+        'bootstrapwysihtml': {
+        	deps: ['bootstrap', 'wysihtml']
+        },
+        'hotkeys': {
+        	deps: ['jquery']
+        },
+        'socketio': {
+        	exports: 'io'
+        }
+    }
+});
+
+var cssConfig = {
+	baseUrl: '/vendor/',
+	paths: {
+		bootstrap: 'bootstrap/dist/css/bootstrap.min',
+		vis: 'vis/dist/vis.min',
+		select: 'bootstrap-select/bootstrap-select.min',
+		datetime: 'eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min',
+		treeview: 'bootstrap-treeview/dist/bootstrap-treeview.min',
+		ionicons: 'ionicons/css/ionicons.min',
+		nvd3: 'nvd3/nv.d3.min',
+		toastr: 'toastr/toastr.min',
+		scrollbar: 'perfect-scrollbar/min/perfect-scrollbar.min',
+		alertify: 'alertify.js/themes/alertify.core',
+		alertifybootstrap: 'alertify.js/themes/alertify.bootstrap',
+		icheck: 'jquery-icheck/skins/all',
+		fullcalendar: 'fullcalendar/dist/fullcalendar.min',
+		gridster: 'gridster/dist/jquery.gridster.min',
+		jstree: 'jstree/dist/themes/default/style.min',
+		fontawesome: 'fontawesome/css/font-awesome.min',
+		bootstrapwysihtml: 'bootstrap-wysihtml5/dist/bootstrap-wysihtml5-0.0.2',
+		contextmenu: 'jQuery-contextMenu/src/jquery.contextMenu'
+	}
+};
+
+load_css('bootstrap');
+load_css('ionicons');
+load_css('toastr');
+load_css('alertify');
+load_css('alertifybootstrap');
+
+if(typeof controller !== 'undefined' && controller !== undefined) {
+    require(['../scripts/' + controller]);
+}
+
+if(typeof _adminMode !== 'undefined' && _adminMode === true) {
+	require(['../scripts/admin/admin']);
+}
+
+var toastr = null;
+var alertify = null;
+
+var xhrErrors = {
+	count: 0
+};
+
+require(['toastr', 'alertify', 'async', 'jstorage'], function(toastrExport, alertifyExport, asyncExport) {
+	
+	toastr = toastrExport;
+	alertify = alertifyExport;
+	window.async = asyncExport;
+
+	$.jStorage.set('active', false);
+	$.jStorage.listenKeyChange('active', function() {
+		var active = $.jStorage.get('active');
+		if(!active) {
+			alertify.alert('You have been logged out. You need to login in order to continue.', function() {
+				window.location.reload();
+			});
+		}
+	});
+	
+	$(document).ready(function() {
+		$('.logout').click(function(e) {
+			e.preventDefault();
+			$.jStorage.stopListening('active');
+			$.jStorage.set('active', false);
+			$.jStorage.flush();
+			window.location.href = '/accounts/logout';
+		});
+		$(document).ajaxError(function(evt, xhr) {
+			xhrErrors.count++;
+			if(typeof xhrErrors[xhr.status] === 'undefined')
+				xhrErrors[xhr.status] = 1;
+			else xhrErrors[xhr.status]++;
+			console.log('COMMUNICATION FAILURE: ' + xhr.status);
+			if(parseInt(xhr.status) > 500) {
+				alertify.alert('Something is wrong. The system failed to communicate with the server properly. This happens in the following cases: <ul> <li> You have <b> INFINITE LOOP </b> or some <b> VERY LARGE COMPUTATION </b> in your program</li> <li> You <b> FORGOT TO PROVIDE APPROPRIATE INPUTS </b> to your program</li>. </ul> &nbsp;&nbsp;&nbsp;Refresh using <b>Ctrl-R</b> or <b>F5</b>, and fix the issue. Ask for TA assistance if you can not resolve the issue.');
+				//alertify.alert('There may be some problem with network connectivity. Please remove proxy settngs(if any) and refresh the page. If the problem persists, then ask for assistance.');
+			} else if(xhr.status == 404) {
+				if(xhrErrors[xhr.status] > 1) return;
+				alertify.alert('The server is not configured properly. Please contact the server administrator.');
+			} else {
+				alertify.alert('Something is wrong. The system failed to communicate with the server properly. This happens in the following cases: <ul> <li> You have <b> INFINITE LOOP </b> or some <b> VERY LARGE COMPUTATION </b> in your program</li> <li> You <b> FORGOT TO PROVIDE APPROPRIATE INPUTS </b> to your program</li>. </ul> &nbsp;&nbsp;&nbsp;Refresh using <b>Ctrl-R</b> or <b>F5</b>, and fix the issue. Ask for TA assistance if you can not resolve the issue.');
+			}
+		});
+	});
+});
+
+function load_css(url) {
+	if(typeof cssConfig.paths[url] !== 'undefined') {
+		url = cssConfig.baseUrl + cssConfig.paths[url];
+	}
+    var link = document.createElement("link");
+    link.type = "text/css";
+    link.rel = "stylesheet";
+    link.href = url + '.css';
+    document.getElementsByTagName("head")[0].appendChild(link);
+}
+
+function load_view(view, element, callback) {
+	var xhr = new XMLHttpRequest();
+	xhr.open('GET', '/view/' + view, true);
+	xhr.send();
+	xhr.onreadystatechange = function() {
+		if(xhr.readyState == 4 && xhr.status == 200) {
+			var response = xhr.responseText;
+			element.innerHTML = response;
+			callback();
+		}
+	};
+}
